@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { MovieType, movieTypeSchema } from "./movieType.js";
 import Joi from "joi";
 
+
 export const movieSchema = new mongoose.Schema({
     //what will our movie property be
     //the title of the movie

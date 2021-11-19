@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { CustomerSchema } from "./customer.js";
+import Joi from "joi";
 
 export const RentalSchema = new mongoose.Schema({
     customer: {
@@ -21,3 +22,10 @@ export const RentalSchema = new mongoose.Schema({
 });
 
 export const Rental = mongoose.model('Rental', RentalSchema);
+
+export function validateRental(rental) {
+    const schema = {
+        customerId: Joi.objectId().required(),
+        movieId: Joi.objectId().required()
+    }
+}

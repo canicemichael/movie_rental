@@ -4,8 +4,8 @@ import mongoose from "mongoose";
 const app = express();
 const PORT = 3000;
 
-import customer from './routes/customer.js';
-import movie from './routes/movie.js';
+import customer from './routes/customers.js';
+import movie from './routes/movies.js';
 
 mongoose.connect("mongodb://localhost/movie_rental", { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('Connected to MongoDb'))
