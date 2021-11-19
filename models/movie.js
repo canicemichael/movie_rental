@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-import { MovieType, movieTypeSchema } from "./movieType";
+import { MovieType, movieTypeSchema } from "./movieType.js";
+import Joi from "joi";
 
 export const movieSchema = new mongoose.Schema({
     //what will our movie property be
@@ -17,3 +18,12 @@ export const movieSchema = new mongoose.Schema({
 });
 
 export const Movie = mongoose.model('Movie', movieSchema);
+
+export function validateMovie(movie){
+    const schema = {
+        title: Joi.string().min(6).max(25).required(),
+        movieTypeId: Joi.objectId().required()
+    }
+    
+    return Joi.validate(movie, schema);
+}

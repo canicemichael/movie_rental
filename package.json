@@ -19,6 +19,8 @@
   "homepage": "https://github.com/canicemichael/movie_rental#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "joi": "^17.4.2",
+    "joi-password-complexity": "^5.1.0",
     "mongoose": "^6.0.13"
   },
   "devDependencies": {

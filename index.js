@@ -5,6 +5,7 @@ const app = express();
 const PORT = 3000;
 
 import customer from './routes/customer.js';
+import movie from './routes/movie.js';
 
 mongoose.connect("mongodb://localhost/movie_rental", { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('Connected to MongoDb'))
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/customer', customer);
+app.use('/api/movie', movie);
 
 app.get('/', (req, res) => {
     res.send('home page reached');
