@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
-import Joi from "joi";
-import passwordComplexity from "joi-password-complexity";
+const mongoose = require("mongoose");
+const Joi = require("joi");
+const passwordComplexity = require("joi-password-complexity");
 
-export const userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         minlength: 6,
@@ -25,9 +25,9 @@ export const userSchema = new mongoose.Schema({
     isAdmin: Boolean
 })
 
-export const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
-export function validateUser(user) {
+function validateUser(user) {
     const schema = {
         name: Joi.string().min(6).max(50).required(),
         email: Joi.string().min(6).max(255).required(),
@@ -44,3 +44,7 @@ export function validateUser(user) {
     
     return Joi.validate(user, schema);
 }
+
+exports.userSchema = userSchema;
+exports.User = User;
+exports.validateUser = validateUser;

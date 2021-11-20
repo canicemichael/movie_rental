@@ -1,6 +1,6 @@
-import { Customer, CustomerSchema } from "../models/customer.js";
-import mongoose from "mongoose";
-import express from "express";
+const { Customer, CustomerSchema } = require("../models/customer");
+const mongoose = require("mongoose");
+const express = require("express");
 
 const router = express.Router();
 
@@ -21,6 +21,4 @@ router.post('/', async (req, res) => {
     res.send(newCustomer);
 })
 
-
-// module.exports = router;
-export default router;
+module.exports = router;

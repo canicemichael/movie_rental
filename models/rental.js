@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
-import { CustomerSchema } from "./customer.js";
-import Joi from "joi";
+const mongoose = require("mongoose");
+const { CustomerSchema } = require("./customer");
+const Joi = require("joi");
 
-export const RentalSchema = new mongoose.Schema({
+const RentalSchema = new mongoose.Schema({
     customer: {
         type: CustomerSchema,
         required: true
@@ -21,11 +21,16 @@ export const RentalSchema = new mongoose.Schema({
     }
 });
 
-export const Rental = mongoose.model('Rental', RentalSchema);
+const Rental = mongoose.model('Rental', RentalSchema);
 
-export function validateRental(rental) {
+function validateRental(rental) {
     const schema = {
         customerId: Joi.objectId().required(),
         movieId: Joi.objectId().required()
     }
+    return Joi.validate(rental, schema);
 }
+
+exports.RentalSchema = RentalSchema;
+exports.Rental = Rental;
+exports.validateRental = validateRental;

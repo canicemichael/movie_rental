@@ -1,5 +1,4 @@
-import Joi from 'joi';       
-  const myFunc = () => {
+const Joi = require('joi');
+  module.exports = function () {
     Joi.objectId = require('joi-objectid')(Joi);
   }
-export default myFunc;

@@ -1,6 +1,6 @@
-import express from "express";
-import { Movie } from "../models/movie.js";
-import { MovieType } from "../models/movieType.js";
+const express = require("express");
+const { Movie } = require("../models/movie");
+const { MovieType } = require("../models/movieType");
 
 const router = express.Router();
 
@@ -26,4 +26,4 @@ router.post('/', async (req, res) => {
     res.send(newMovie);
 })
 
-export default router;
+module.exports = router;

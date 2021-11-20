@@ -1,15 +1,17 @@
-import User from "../models/user.js";
-import express from "express";
+const User = require("../models/user");
+const express = require("express");
+const mongoose = require("mongoose");
 
 const router = express.Router();
 
 
 router.get('/', async (req, res) => {
-    res.send('users page');
+    const users = await User.findById
+    
 });
 
 router.post('/', async (req, res) => {
     res.send('users post page');
 })
 
-export default router;
+module.exports = router;

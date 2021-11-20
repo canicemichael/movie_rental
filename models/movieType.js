@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
-import Joi from "joi";
+const mongoose = require("mongoose");
+const Joi = require("joi");
 
-export const movieTypeSchema = new mongoose.Schema({
+const movieTypeSchema = new mongoose.Schema({
     name: {
         type: String,
         minlength: 6,
@@ -10,11 +10,15 @@ export const movieTypeSchema = new mongoose.Schema({
     }
 });
 
-export const MovieType = mongoose.model('MovieType', movieTypeSchema);
+const MovieType = mongoose.model('MovieType', movieTypeSchema);
 
-export function validateMovieType(movieType){
+function validateMovieType(movieType){
     const schema = {
         name: Joi.string().min(6).max(25).required()
     }
     return Joi.validate(movieType, schema);
 }
+
+exports.movieTypeSchema = movieTypeSchema;
+exports.MovieType = MovieType;
+exports.validateMovieType = validateMovieType;
