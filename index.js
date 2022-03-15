@@ -1,11 +1,21 @@
-import express from "express";
-import mongoose from "mongoose";
+const express = require("express");
+const mongoose = require("mongoose");
+// const dotenv = require('dotenv');
+// dotenv.config();
+
+// const port = process.env.PORT;
+const { port } = require('./config');
+console.log(`Your port is ${port}`);
 
 const app = express();
-const PORT = 3000;
+// const PORT = 3000;
 
-import customer from './routes/customers.js';
-import movie from './routes/movies.js';
+
+
+
+const customers = require('./routes/customers.js');
+const movies = require('./routes/movies.js');
+const users = require('./routes/users');
 
 mongoose.connect("mongodb://localhost/movie_rental", { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('Connected to MongoDb'))
@@ -14,14 +24,15 @@ mongoose.connect("mongodb://localhost/movie_rental", { useNewUrlParser: true, us
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/customer', customer);
-app.use('/api/movie', movie);
+app.use('/api/customers', customers);
+app.use('/api/movies', movies);
+app.use('/api/users', users);
 
 app.get('/', (req, res) => {
     res.send('home page reached');
-})
+});
 
 
-app.listen(PORT, ()=>{
-    console.log(`listening to port ${3000}`);
+app.listen(port, ()=>{
+    console.log(`listening to port ${port}`);
 });
